@@ -2,7 +2,7 @@ import {
     List,
     Datagrid,
     TextField,
-    NumberField
+    NumberField,
   } from 'react-admin';
   
   const AuthorList = () => (
@@ -10,7 +10,7 @@ import {
       <Datagrid>
         <TextField source="id" />
         <TextField source="name" />
-        <NumberField source="birthYear" label="Birth Year" />
+        <NumberField source="birthYear" />
       </Datagrid>
     </List>
   );

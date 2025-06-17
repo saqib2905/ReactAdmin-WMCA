@@ -16,12 +16,20 @@ const myDataProvider: DataProvider = {
       sort = { field: 'id', order: 'ASC' },
     } = params;
 
+    const processedFilter: Record<string, any> = {};
+    Object.entries(filter).forEach(([key, value]) => {
+      if (key === 'title') {
+        processedFilter['title_like'] = value;
+      } else {
+        processedFilter[key] = value;
+      }
+    });
     const query = {
       _sort: sort.field,
       _order: sort.order,
       _page: pagination.page,
       _limit: pagination.perPage,
-      ...filter,
+      ...processedFilter,
     };
 
     const url = `${apiUrl}/${resource}?${new URLSearchParams(query as any).toString()}`;
