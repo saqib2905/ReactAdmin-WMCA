@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Admin, Resource } from 'react-admin';
+import simpleRestProvider from 'ra-data-simple-rest';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import BookList from './pages/books/BookList';
+import BookEdit from './pages/books/BookEdit';
+import AuthorList from './pages/authors/AuthorList';
+// import myDataProvider from './dataProvider';
+
+const App = () => (
+<Admin dataProvider={simpleRestProvider('http://localhost:3001')}>
+<Resource name="books" list={BookList} edit={BookEdit} />
+    <Resource name="authors" list={AuthorList} />
+  </Admin>
+);
 
 export default App;
