@@ -18,10 +18,10 @@ router.render = (req, res) => {
 
   if (Array.isArray(data)) {
     const pathParts = req.path.split('/');
-    const resource = pathParts[1]; // e.g., "books"
+    const resource = pathParts[1]; // "books"
     const total = router.db.get(resource).value().length;
     res.setHeader('Content-Range', `${resource} 0-${data.length - 1}/${total}`);
-    res.setHeader('X-Total-Count', total); // <-- critical for React Admin fallback
+    res.setHeader('X-Total-Count', total); // <--fallback
   }
 
   res.json(data);
